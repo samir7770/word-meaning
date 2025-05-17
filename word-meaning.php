@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Word_Meaning{
     function __construct() {
         add_action( 'wp_enqueue_scripts', [$this, 'load_scripts' ] );
+        add_action('wp_footer', [$this, 'tooltip' ] );
     }
 
     function load_scripts(){
@@ -39,6 +40,21 @@ class Word_Meaning{
             true
         );
     }
+
+    function tooltip(){
+        ?>
+        <div id="wm-tooltip">
+            <div class="tooltip-content">
+                <div id="tooltip-header">
+                    <h3></h3>
+                </div>
+                <div class="tooltip-body">
+                    <p id="word-meaning"></p>
+                </div>
+            </div>
+        </div>
+        <?php
+    }  
 }
 
 new Word_Meaning();
